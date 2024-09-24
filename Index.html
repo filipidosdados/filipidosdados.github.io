@@ -1,0 +1,219 @@
+<html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Filipi Lozano</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-photo">
+                <img src="https://avatars.githubusercontent.com/u/166406208?s=150&v=4" alt="Filipi Lozano">
+            </div>
+            <div class="profile-info">
+                <h1>Filipi C. Lozano</h1>
+                <p class="tagline"><b>Analista de Dados</b></p>
+                <p class="description"><b>Apaixonado por automação de processos e Business Intelligence</b></p>
+                <p class="location"><i class="fas fa-map-marker-alt"><b></b></i><b> Feira de Santana - BA</b></p>
+            </div>
+            <!-- Adiciona a logo aqui -->
+            <div class="logo">
+                <img src="Imgs/logo.png" alt="Logo">
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#education">Educação</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#projects">Projetos</a></li>
+            <li><a href="#powerbi">Power BI</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="about">
+            <h3>Sobre Mim!</h3>
+            <p><b>Profissional bacharelado em Administração de Empresas e graduando em Ciência de Dados,
+com cursos complementares em SQL Server, Power BI, Python para dados, PowerApps, Power Automate, Excel
+            Avançado pela Hashtag Treinamentos e outros diversos cursos dentro da área  de projetos, qualidade, Logística e Gestão de pessoas.</b></p>
+        </section>
+        
+        <section id="education">
+            <h1>Educação</h1>
+            <div class="education-item">
+                <h2>→ Bacharelado em Administração de empresas </h2>
+                </b><p><b>Conclusão: 2022</b></p>
+                <h2>→ Graduando em Ciência de Dados </h2>
+                <p><b>Estácio de Sá - 5° Período </b></p><b>
+                </b><p><b>Estimativa de conclusão: Dez/2025</b></p>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h3>Habilidades</h3>
+            <div class="skills-container">
+                <div class="skill-item"><i class="fas fa-table"></i> Excel</div>
+                <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                <div class="skill-item"><i class="fas fa-chart-bar"></i> Power BI</div>
+                <div class="skill-item"><i class="fas fa-language"></i> Inglês Fala e escrita</div>
+                <div class="skill-item"><i class="fas fa-server"></i> Banco de Dados</div>
+                <div class="skill-item"><i class="fas fa-cubes"></i> Qualidade</div>
+                <div class="skill-item"><i class="fas fa-tasks"></i> Logística</div>
+                <div class="skill-item"><i class="fas fa-cogs"></i> Linguagem M</div>
+                <div class="skill-item"><i class="fab fa-python"></i> Python para dados</div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Projetos</h2>
+            <div class="carousel-container">
+                <button class="prev" onclick="moveCarousel(-1)">❮</button>
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="imgs/P_Sap.jpg" alt="Dashboard Armazém" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Gestão de Pedidos</b></h4><b>
+                            </b><p><b>O objetivo deste projeto é desenvolver uma solução integrada para 
+                                otimizar a gestão dos pedidos lançados, visando um acompanhamento 
+                                com todos os detalhes necessários para o agendamento correto e 
+                                desempenho do setor.
+                                
+                                Automatização de Status: De acordo com as metas, os pedidos são controlados por 
+                                Pendente sem DT, Pendente com DT, Recusado ou Finalizado. Ambas as métricas são diagnosticadas
+                                de acordo com seu status atual e trazendo os acompanhamentos de 
+                                Tendências e reivindicações. </b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/Dasharmazem.jpg" alt="Dashboard Armazém" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Gestão de armazenagem</b></h4>
+                            <p><b>
+                                Melhoria na Gestão de Inventário, implementar sistemas de controle 
+                                de estoque que permitam uma visão em tempo real dos produtos 
+                                disponíveis, dias previstos, Grand Total dos segmentos, entre outros... 
+                                Prevnindo problemas como falta de estoque ou excesso 
+                                de mercadorias.</b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/dashcomercial.jpg" alt="Dashboard comercial" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Principais indicadores para Gestão</b></h4>
+                            <p><b>O objetivo destes projetos é desenvolver uma solução integrada para 
+                                otimizar a gestão de processos comerciais e de armazenagem, visando melhorar
+                                a eficiência operacional, aumentar produtividade e acertividade na coleta dos dados.
+                        </div>
+                    </div>
+                    <!-- Adicione mais slides conforme necessário -->
+                </div>
+                <button class="next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </section>
+        
+        <section id="powerbi">
+            <h3>Power BI</h3>
+            <div class="powerbi-container">
+                <div class="powerbi-item">
+                    <img src="imgs/Dasharmazem.jpg" alt="Power BI Visual 7" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Armazém</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão. 
+
+                            Foi criado indicadores com chave de desempenho (KPIs) e Métricas, como: 
+                            
+                            <br> - KPI 1 
+                            <br> - KPI 2
+                            <br> - KPI 3 
+                            <br> - KPI 4
+                            <br>  - KPI 5 🌏</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dashcomercial.jpg" alt="Power BI Visual 1" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Comercial</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                        
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dash2.jpg" alt="Power BI Visual 2" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard de Fornecedores</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dash3.jpg" alt="Power BI Visual 3" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Financeiro</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dash4.jpg" alt="Power BI Visual 4" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard de E - commerce</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dash5.jpg" alt="Power BI Visual 5" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Vendas</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dash6.jpg" alt="Power BI Visual 6" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard de Recursos Humanos</h4>
+                        <p><b>Esse tipo de análise são para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="mailto:filipicd@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/filipi-lozano/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/filipidosdados" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a> <!-- CRIAR UM INSTAGRAM PROFISSIONAL-->
+            </div>
+    </footer>
+
+    <div id=" lightbox"="">
+        <img class="lightbox-content" id="lightbox-image">
+        </div>
+        <p>© 2024 Filipi C. Lozano. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id=" lightbox"="">
+
+        <a href="#" class="back-to-top">
+            <i class="fas fa-arrow-up"></i> Voltar ao Topo
+        </a>
+    <script src="carrossel.js"></script>
+
+    <script> 
+        const backToTopButton = document.querySelector('.back-to-top');
+    
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    
+</i></a></footer></body></html>
