@@ -1,1100 +1,584 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<!--
-  =============================================================
-  SEÇÃO: SISTEMAS DE GERENCIAMENTO PERSONALIZADOS
-  Para adicionar ao seu portfólio filipidosdados.github.io:
-  
-  1. Copie todo o conteúdo entre as tags <section> e </section> 
-     (o bloco <section id="sistemas-gerenciamento">...</section>)
-     e cole no seu index.html onde quiser inserir.
-  
-  2. Copie o bloco <style> e cole dentro do <head> do seu index.html
-     (ou no arquivo CSS existente).
-  
-  3. Copie o bloco <script> e cole antes do </body>.
-  
-  4. Adicione no menu de navegação:
-     <a href="#sistemas-gerenciamento" class="nav-link">Sistemas Web</a>
-  =============================================================
--->
-
-<!-- ========= CSS - Cole no <head> do seu index.html ========= -->
-<style>
-  /* ---- Sistemas de Gerenciamento ---- */
-  #sistemas-gerenciamento {
-    padding: 60px 20px;
-    background: #0d1b2a;
-    color: #e0e0e0;
-  }
-
-  #sistemas-gerenciamento h2 {
-    text-align: center;
-    font-size: 2rem;
-    color: #ffffff;
-    margin-bottom: 8px;
-  }
-
-  .sistemas-subtitle {
-    text-align: center;
-    color: #8899aa;
-    margin-bottom: 48px;
-    font-size: 1rem;
-  }
-
-  .sistemas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1100px;
-    margin: 0 auto 40px;
-  }
-
-  .sistema-card {
-    background: #132030;
-    border: 1px solid #1e3248;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .sistema-card:hover {
-    transform: translateY(-4px);
-    border-color: #f4a825;
-    box-shadow: 0 8px 30px rgba(244, 168, 37, 0.15);
-  }
-
-  .sistema-card-accent {
-    height: 4px;
-  }
-
-  .accent-blue   { background: linear-gradient(90deg, #1a6fbf, #0d4a8a); }
-  .accent-violet { background: linear-gradient(90deg, #7c3aed, #5b21b6); }
-  .accent-green  { background: linear-gradient(90deg, #059669, #047857); }
-
-  .sistema-card-body {
-    padding: 20px;
-  }
-
-  .sistema-card-icon {
-    font-size: 2rem;
-    margin-bottom: 12px;
-  }
-
-  .sistema-card h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-
-  .sistema-card-sub {
-    font-size: 0.75rem;
-    color: #f4a825;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  .sistema-card p {
-    font-size: 0.82rem;
-    color: #8899aa;
-    line-height: 1.6;
-    margin-bottom: 14px;
-  }
-
-  .sistema-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 16px;
-  }
-
-  .sistema-tag {
-    background: #1e3248;
-    color: #8899aa;
-    font-size: 0.7rem;
-    padding: 3px 8px;
-    border-radius: 20px;
-    border: 1px solid #2a4060;
-  }
-
-  .btn-demo {
-    display: block;
-    width: 100%;
-    padding: 9px;
-    background: transparent;
-    border: 1px solid #1e3248;
-    border-radius: 8px;
-    color: #8899aa;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-  }
-
-  .btn-demo:hover, .sistema-card:hover .btn-demo {
-    background: #f4a825;
-    border-color: #f4a825;
-    color: #0d1b2a;
-  }
-
-  /* ---- Demo Panel ---- */
-  .demo-panel {
-    display: none;
-    max-width: 1100px;
-    margin: 0 auto;
-    background: #132030;
-    border: 1px solid #1e3248;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .demo-panel.active {
-    display: block;
-  }
-
-  .demo-panel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-    border-bottom: 1px solid #1e3248;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .demo-panel-header-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .demo-panel-icon {
-    font-size: 1.4rem;
-  }
-
-  .demo-panel-header h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-  }
-
-  .demo-panel-header p {
-    font-size: 0.75rem;
-    color: #8899aa;
-    margin: 0;
-  }
-
-  .demo-panel-badges {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .badge-ficticio {
-    background: rgba(244, 168, 37, 0.1);
-    color: #f4a825;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(244, 168, 37, 0.3);
-  }
-
-  .btn-voltar {
-    background: transparent;
-    border: 1px solid #1e3248;
-    color: #8899aa;
-    font-size: 0.75rem;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-voltar:hover {
-    border-color: #f4a825;
-    color: #f4a825;
-  }
-
-  .demo-panel-body {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  @media (min-width: 900px) {
-    .demo-panel-body {
-      grid-template-columns: 3fr 2fr;
-    }
-  }
-
-  .demo-content {
-    padding: 20px;
-    border-right: 1px solid #1e3248;
-  }
-
-  .demo-info {
-    padding: 20px;
-  }
-
-  /* ---- Demo Tabs ---- */
-  .demo-tabs {
-    display: flex;
-    gap: 4px;
-    background: #0d1b2a;
-    padding: 4px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-  }
-
-  .demo-tab {
-    flex: 1;
-    padding: 6px 0;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    color: #8899aa;
-    font-size: 0.75rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .demo-tab.active {
-    background: #132030;
-    color: #ffffff;
-  }
-
-  .demo-tab-content {
-    display: none;
-  }
-
-  .demo-tab-content.active {
-    display: block;
-  }
-
-  /* ---- KPI Cards ---- */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-
-  .kpi-card {
-    background: #0d1b2a;
-    border: 1px solid #1e3248;
-    border-radius: 10px;
-    padding: 12px;
-  }
-
-  .kpi-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-
-  .kpi-icon {
-    font-size: 1rem;
-    opacity: 0.6;
-  }
-
-  .kpi-trend-up   { font-size: 0.7rem; color: #10b981; font-weight: 700; }
-  .kpi-trend-down { font-size: 0.7rem; color: #ef4444; font-weight: 700; }
-
-  .kpi-value {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 2px;
-  }
-
-  .kpi-label {
-    font-size: 0.7rem;
-    color: #8899aa;
-  }
-
-  /* ---- Mini Chart (CSS bars) ---- */
-  .mini-chart {
-    background: #0d1b2a;
-    border: 1px solid #1e3248;
-    border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 12px;
-  }
-
-  .mini-chart h4 {
-    font-size: 0.75rem;
-    color: #8899aa;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
-  .bar-chart-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  .bar-label {
-    font-size: 0.65rem;
-    color: #8899aa;
-    width: 52px;
-    flex-shrink: 0;
-    text-align: right;
-  }
-
-  .bar-track {
-    flex: 1;
-    height: 10px;
-    background: #1e3248;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    border-radius: 5px;
-    transition: width 0.8s ease;
-  }
-
-  .bar-val {
-    font-size: 0.65rem;
-    color: #ffffff;
-    font-weight: 700;
-    width: 40px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  /* ---- Member list ---- */
-  .member-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .member-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #0d1b2a;
-    border: 1px solid #1e3248;
-    border-radius: 8px;
-    padding: 10px;
-  }
-
-  .member-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(244, 168, 37, 0.15);
-    border: 1px solid rgba(244, 168, 37, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #f4a825;
-    flex-shrink: 0;
-  }
-
-  .member-info { flex: 1; min-width: 0; }
-
-  .member-name {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .member-sub {
-    font-size: 0.65rem;
-    color: #8899aa;
-  }
-
-  .badge-ativo   { background: rgba(16,185,129,0.15); color: #10b981; font-size: 0.65rem; padding: 2px 7px; border-radius: 10px; }
-  .badge-vencido { background: rgba(239,68,68,0.15);  color: #ef4444; font-size: 0.65rem; padding: 2px 7px; border-radius: 10px; }
-  .badge-pendente     { background: rgba(245,158,11,0.15); color: #f59e0b; font-size: 0.65rem; padding: 2px 7px; border-radius: 10px; }
-  .badge-confirmada   { background: rgba(16,185,129,0.15); color: #10b981; font-size: 0.65rem; padding: 2px 7px; border-radius: 10px; }
-
-  /* ---- Info Panel ---- */
-  .info-card-hero {
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 14px;
-    color: white;
-  }
-  .info-card-hero.blue   { background: linear-gradient(135deg, #1a6fbf, #0d4a8a); }
-  .info-card-hero.violet { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
-  .info-card-hero.green  { background: linear-gradient(135deg, #059669, #047857); }
-
-  .info-card-hero-icon { font-size: 1.8rem; margin-bottom: 8px; opacity: 0.8; }
-  .info-card-hero h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
-  .info-card-hero p  { font-size: 0.75rem; opacity: 0.75; margin: 0; }
-
-  .info-block {
-    background: #0d1b2a;
-    border: 1px solid #1e3248;
-    border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 12px;
-  }
-
-  .info-block-title {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #f4a825;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 8px;
-  }
-
-  .info-block p {
-    font-size: 0.8rem;
-    color: #8899aa;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .info-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .btn-orcamento {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 12px;
-    background: #f4a825;
-    border: none;
-    border-radius: 10px;
-    color: #0d1b2a;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.1s;
-    margin-top: 4px;
-  }
-
-  .btn-orcamento:hover {
-    background: #e09820;
-    transform: translateY(-1px);
-  }
-
-  /* ---- Demo navigation ---- */
-  .demo-outros {
-    max-width: 1100px;
-    margin: 16px auto 0;
-  }
-
-  .demo-outros p {
-    font-size: 0.75rem;
-    color: #8899aa;
-    margin-bottom: 8px;
-  }
-
-  .demo-outros-btns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .btn-outro-sistema {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: #132030;
-    border: 1px solid #1e3248;
-    border-radius: 8px;
-    color: #8899aa;
-    font-size: 0.75rem;
-    padding: 7px 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-outro-sistema:hover {
-    border-color: #f4a825;
-    color: #f4a825;
-  }
-
-  /* ---- CTA strip ---- */
-  .sistemas-cta {
-    max-width: 600px;
-    margin: 40px auto 0;
-    text-align: center;
-    padding: 32px 20px;
-    background: #132030;
-    border: 1px solid #1e3248;
-    border-radius: 16px;
-  }
-
-  .sistemas-cta h3 {
-    font-size: 1.2rem;
-    color: #ffffff;
-    margin-bottom: 8px;
-  }
-
-  .sistemas-cta p {
-    font-size: 0.85rem;
-    color: #8899aa;
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 600px) {
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .sistemas-grid { grid-template-columns: 1fr; }
-  }
-</style>
-
-<!-- ========= HTML - Cole no local desejado do seu index.html ========= -->
-<section id="sistemas-gerenciamento">
-  <h2>Sistemas de Gerenciamento</h2>
-  <p class="sistemas-subtitle">Aplicações web completas e personalizadas — explore demos interativas com dados fictícios</p>
-
-  <!-- Cards grid -->
-  <div class="sistemas-grid" id="sistemas-cards">
-    <!-- Card 1: Clínica -->
-    <div class="sistema-card" onclick="abrirDemo('clinica')">
-      <div class="sistema-card-accent accent-blue"></div>
-      <div class="sistema-card-body">
-        <div class="sistema-card-icon">🏥</div>
-        <h3>Sistema de Gestão para Clínicas</h3>
-        <p class="sistema-card-sub">Financeiro · Produtividade · Multi-unidade</p>
-        <p>Dashboard financeiro completo com atendimentos, contas a pagar/receber, DRE, conciliação bancária e gestão de múltiplas clínicas com controle de acesso por perfil.</p>
-        <div class="sistema-tags">
-          <span class="sistema-tag">Financeiro</span>
-          <span class="sistema-tag">Multi-clínica</span>
-          <span class="sistema-tag">DRE</span>
-          <span class="sistema-tag">Produtividade</span>
-        </div>
-        <button class="btn-demo">▶ Ver demo interativa</button>
-      </div>
-    </div>
-
-    <!-- Card 2: Pastoral -->
-    <div class="sistema-card" onclick="abrirDemo('pastoral')">
-      <div class="sistema-card-accent accent-violet"></div>
-      <div class="sistema-card-body">
-        <div class="sistema-card-icon">⛪</div>
-        <h3>Sistema de Visitas Pastorais</h3>
-        <p class="sistema-card-sub">Gestão · Agenda · Relatórios</p>
-        <p>Plataforma para igrejas organizarem e monitorarem visitas pastorais por setor, com agenda, histórico de membros, taxa de realização e controle de pendências.</p>
-        <div class="sistema-tags">
-          <span class="sistema-tag">Igreja</span>
-          <span class="sistema-tag">Agenda</span>
-          <span class="sistema-tag">Setores</span>
-          <span class="sistema-tag">Membros</span>
-        </div>
-        <button class="btn-demo">▶ Ver demo interativa</button>
-      </div>
-    </div>
-
-    <!-- Card 3: Carteirinha -->
-    <div class="sistema-card" onclick="abrirDemo('carteirinha')">
-      <div class="sistema-card-accent accent-green"></div>
-      <div class="sistema-card-body">
-        <div class="sistema-card-icon">🪪</div>
-        <h3>Hub de Carteirinhas Digitais</h3>
-        <p class="sistema-card-sub">QR Code · Controle de Acesso · Membros</p>
-        <p>Sistema de emissão e gestão de carteirinhas digitais com QR Code para controle de acesso, gestão de planos, registro de entrada/saída e relatórios.</p>
-        <div class="sistema-tags">
-          <span class="sistema-tag">QR Code</span>
-          <span class="sistema-tag">Acesso</span>
-          <span class="sistema-tag">Membros</span>
-          <span class="sistema-tag">Digital</span>
-        </div>
-        <button class="btn-demo">▶ Ver demo interativa</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ DEMO: CLÍNICA ============ -->
-  <div class="demo-panel" id="demo-clinica">
-    <div class="demo-panel-header">
-      <div class="demo-panel-header-left">
-        <span class="demo-panel-icon">🏥</span>
-        <div>
-          <h3>Sistema de Gestão para Clínicas</h3>
-          <p>Clínica Dr. João — Dados fictícios</p>
-        </div>
-      </div>
-      <div class="demo-panel-badges">
-        <span class="badge-ficticio">📊 Dados fictícios</span>
-        <button class="btn-voltar" onclick="voltarCards()">← Voltar</button>
-      </div>
-    </div>
-
-    <div class="demo-panel-body">
-      <div class="demo-content">
-        <div class="demo-tabs">
-          <button class="demo-tab active" onclick="trocarTab('clinica','dashboard',this)">Dashboard</button>
-          <button class="demo-tab" onclick="trocarTab('clinica','medicos',this)">Médicos</button>
-          <button class="demo-tab" onclick="trocarTab('clinica','despesas',this)">Despesas</button>
-        </div>
-
-        <!-- Tab Dashboard -->
-        <div class="demo-tab-content active" id="clinica-dashboard">
-          <div class="kpi-grid">
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">💰</span><span class="kpi-trend-up">▲ +15%</span></div>
-              <div class="kpi-value">R$ 53.900</div>
-              <div class="kpi-label">Faturamento Bruto</div>
+<html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Filipi Lozano</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-photo">
+                <img src="https://avatars.githubusercontent.com/u/166406208?s=150&v=4" alt="Filipi Lozano">
             </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">🧾</span><span class="kpi-trend-down">▲ +5%</span></div>
-              <div class="kpi-value">R$ 27.600</div>
-              <div class="kpi-label">Total Despesas</div>
+            <div class="profile-info">
+                <h1>Filipi C. Lozano</h1>
+                <p class="tagline"><b>Administrador de empresas e Cientista de Dados</b></p>
+                <p class="description"><b>Apaixonado por estatística, Business Intelligence, automações  e dados</b></p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i><b> Home Work</b></p>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">📈</span><span class="kpi-trend-up">▲ +23%</span></div>
-              <div class="kpi-value">R$ 26.300</div>
-              <div class="kpi-label">Lucro Líquido</div>
+            <!-- -->
+            <div class="tech-logos">
+                <div class="logo-item" title="Power BI">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="logo-img">
+                </div>
+                <div class="logo-item" title="SQL">
+                    <img src="https://www.svgrepo.com/show/331761/sql-database-sql-azure.svg" alt="SQL" class="logo-img">
+                </div>
+                <div class="logo-item" title="N8N">
+                    <img src="https://n8n.io/favicon.ico" alt="N8N" class="logo-img">
+                </div>
+                <div class="logo-item" title="Python">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="logo-img">
+                </div>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">🔬</span><span class="kpi-trend-up">▲ +18%</span></div>
-              <div class="kpi-value">214</div>
-              <div class="kpi-label">Total Exames</div>
-            </div>
-          </div>
-          <div class="mini-chart">
-            <h4>Evolução Mensal — Receita (R$)</h4>
-            <div class="bar-chart-row"><span class="bar-label">Set/24</span><div class="bar-track"><div class="bar-fill" style="width:71%;background:#1a6fbf"></div></div><span class="bar-val">38,2k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Out/24</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:#1a6fbf"></div></div><span class="bar-val">42,5k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Nov/24</span><div class="bar-track"><div class="bar-fill" style="width:74%;background:#1a6fbf"></div></div><span class="bar-val">39,8k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Dez/24</span><div class="bar-track"><div class="bar-fill" style="width:95%;background:#1a6fbf"></div></div><span class="bar-val">51,2k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Jan/25</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#1a6fbf"></div></div><span class="bar-val">46,7k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Fev/25</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#f4a825"></div></div><span class="bar-val">53,9k</span></div>
-          </div>
         </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#Dashboards">Projetos BI</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#stack">Ferramentas</a></li>
+            <li><a href="#etl-transformation">ETL & Data</a></li>
+            <li><a href="#projects">Projetos BI</a></li>
+            <li><a href="#certifications">Certificações</a></li>
+            <li><a href="#ai-automation">Automações com IA</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="about">
+            <h3>Sobre Mim!</h3>
+            <p>Profissional especializado, com vivência em auditoria financeira no grupo Accor Hotels, Analytics Sênior na Heineken Brasil e atualmente como cientista de dados na Vivo Telefônica São Paulo, desenvolvendo Dashboards automatizados com consulta diretamente no banco de dados e automações personalizadas via N8N. Bacharelado em Administração de Empresas e graduado em Ciência de Dados, com cursos complementares em SQL Server, Pentaho, Power BI, N8N, Python para dados, PowerApps, Power Automate, Excel Avançado e outros diversos cursos dentro da área de projetos, qualidade, Logística e Gestão de pessoas.</p>
+        </section>
+        
+        <section id="stats" class="dual-section">
+            <h2>Números que Falam</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Dashboards Criados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">Redução em Processos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Automações Implementadas</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="stack" class="dual-section">
+            <h2>Stack de Tecnologias</h2>
+            <div class="stack-container">
+                <div class="stack-flow">
+                    <div class="stack-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="stack-logo">
+                        <p>Python</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="stack-item">
+                        <img src="https://www.svgrepo.com/show/331761/sql-database-sql-azure.svg" alt="SQL" class="stack-logo">
+                        <p>SQL</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="stack-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="stack-logo">
+                        <p>Power BI</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="stack-item">
+                        <img src="https://n8n.io/favicon.ico" alt="N8N" class="stack-logo">
+                        <p>Automação</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2>Certificações - Nível Superior</h2>
+            <div class="certifications-container">
+                <div class="cert-item">
+                    <h3>🎓 Bacharelado em Administração de Empresas</h3>
+                    <p class="cert-school">Formação Acadêmica Completa</p>
+                </div>
+                <div class="cert-item">
+                    <h3>📊 Graduado em Ciência de Dados</h3>
+                    <p class="cert-school">Formação Acadêmica Completa</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h3>Habilidades</h3>
+            <div class="skills-container">
+                <div>
+                    <h4>BI & Visualização</h4>
+                    <div class="skills-grid">
+                        <div class="skill-item"><i class="fas fa-chart-bar"></i> Power BI</div>
+                        <div class="skill-item"><i class="fas fa-chart-line"></i> Looker Studio</div>
+                        <div class="skill-item"><i class="fas fa-table"></i> Excel</div>
+                        <div class="skill-item"><i class="fas fa-cogs"></i> Linguagem M</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Banco de Dados & SQL</h4>
+                    <div class="skills-grid">
+                        <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                        <div class="skill-item"><i class="fas fa-server"></i> Banco de Dados</div>
+                        <div class="skill-item"><i class="fas fa-code"></i> Query Otimização</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Automação & Integração</h4>
+                    <div class="skills-grid">
+                        <div class="skill-item"><i class="fas fa-cubes"></i> N8N</div>
+                        <div class="skill-item"><i class="fas fa-cubes"></i> Power Automate</div>
+                        <div class="skill-item"><i class="fas fa-tasks"></i> Power Apps</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Linguagens de Programação</h4>
+                    <div class="skills-grid">
+                        <div class="skill-item"><i class="fab fa-python"></i> Python para Dados</div>
+                        <div class="skill-item"><i class="fas fa-code"></i> DAX</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Soft Skills</h4>
+                    <div class="skills-grid">
+                        <div class="skill-item"><i class="fas fa-language"></i> Inglês</div>
+                        <div class="skill-item"><i class="fas fa-users"></i> Comunicação</div>
+                        <div class="skill-item"><i class="fas fa-lightbulb"></i> Problem Solving</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Projetos</h2>
+            <div class="projects-filters">
+                <a href="#etl-transformation" class="filter-btn active">ETL</a>
+                <a href="#ai-automation" class="filter-btn"> Automação IA</a>
+            </div>
+            <div class="carousel-container">
+                <button class="prev" onclick="moveCarousel(-1)">❮</button>
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="imgs/Dasharmazem.jpg" alt="Dashboard Armazém" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Gestão de Pedidos</b></h4><b>
+                            </b><p><b>O objetivo deste projeto é desenvolver uma solução integrada para 
+                                otimizar a gestão dos pedidos lançados, visando um acompanhamento 
+                                com todos os detalhes necessários para o agendamento correto e 
+                                desempenho do setor.
+                                
+                                Automatização de Status: De acordo com as metas, os pedidos são controlados por 
+                                Pendente sem DT, Pendente com DT, Recusado ou Finalizado. Ambas as métricas são diagnosticadas
+                                de acordo com seu status atual e trazendo os acompanhamentos de 
+                                Tendências e reivindicações. </b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/DashRenovaesperanca.jpg" alt="Dashboard Renova-Me" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Projeto Social</b></h4>
+                            <p><b>
+                                Gerenciamento para igrejas - 
+                                Ideal para indicadores sociais, foco em diversos ministérios e perspectiva de necessidades.</b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/Fluxo de Caixa.jpg" alt="Dashboard Caixa" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Fluxo de Caixa</b></h4>
+                            <p><b>
+                                indicadores de gestão financeira servem para avaliar a saúde financeira
+                                 de uma empresa, monitorar sua eficiência operacional e apoiar a 
+                                 tomada de decisões estratégicas.
+                                </b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/Financeiro.jpg" alt="Dashboard Caixa" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Financeiro</b></h4>
+                            <p><b>
+                                Controle Financeiro
+                                </b></p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="imgs/Frota.jpg" alt="Dashboard Caixa" class="powerbi-image">
+                            <div class="powerbi-description">
+                                <h4><b>Frota</b></h4>
+                                <p><b>
+                                    Controle e gerenciamento de frota é uma prática fundamental para empresas 
+                                    que dependem de veículos para operações logísticas, transporte ou serviços. 
+                                    Envolve o monitoramento, planejamento e otimização do uso de veículos, 
+                                    garantindo eficiência operacional, redução de custos e cumprimento de regulamentações.
+                                    </b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/P_Sap.jpg" alt="Dashboard Armazém" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Gestão de armazenagem</b></h4>
+                            <p><b>
+                                Melhoria na Gestão de Inventário, implementar sistemas de controle 
+                                de estoque que permitam uma visão em tempo real dos produtos 
+                                disponíveis, dias previstos, Grand Total dos segmentos, entre outros... 
+                                Prevenindo problemas como falta de estoque ou excesso 
+                                de mercadorias.</b></p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imgs/dashcomercial.jpg" alt="Dashboard comercial" class="powerbi-image">
+                        <div class="powerbi-description">
+                            <h4><b>Principais indicadores para Gestão</b></h4>
+                            <p><b>O objetivo destes projetos é desenvolver uma solução integrada para 
+                                otimizar a gestão de processos comerciais e de armazenagem, visando melhorar
+                                a eficiência operacional, aumentar produtividade e acertividade na coleta dos dados.
+                        </div>
+                    </div>
+                    <!-- Adicione mais slides conforme necessário -->
+                </div>
+                <button class="next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </section>
+        
+        <section id="powerbi">
+            <div class="powerbi-header">
+                <h3>Power BI</h3>
+                <div class="logo">
+                    
+                </div>
+            </div>
+            
+            <div class="powerbi-container">
+                <div class="powerbi-item">
+                    <img src="imgs/Dasharmazem.jpg" alt="Power BI Visual 7" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Armazém</h4>
+                        <p><b>Para empresas que buscam otimizar a eficiência operacional e através de gestão. 
 
-        <!-- Tab Médicos -->
-        <div class="demo-tab-content" id="clinica-medicos">
-          <div class="mini-chart">
-            <h4>Receita por Médico — Fev/2025</h4>
-            <div class="bar-chart-row"><span class="bar-label">Dr. Rafael</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#1a6fbf"></div></div><span class="bar-val">R$18,9k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Dra. Carla</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#059669"></div></div><span class="bar-val">R$15,2k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Dr. Marcos</span><div class="bar-track"><div class="bar-fill" style="width:66%;background:#7c3aed"></div></div><span class="bar-val">R$12,4k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Dra. Ana</span><div class="bar-track"><div class="bar-fill" style="width:39%;background:#f4a825"></div></div><span class="bar-val">R$7,4k</span></div>
-          </div>
-          <div class="member-list">
-            <div class="member-item">
-              <div class="member-avatar">DR</div>
-              <div class="member-info"><div class="member-name">Dr. Rafael Souza</div><div class="member-sub">CRM 12345 · Cardiologia</div></div>
-              <span class="badge-ativo">ativo</span>
+                            Foi criado indicadores com chave de desempenho (KPIs) e Métricas inteligentes: 
+                            
+                            </b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/dashcomercial.jpg" alt="Power BI Visual 1" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Comercial</h4>
+                        <p><b>Esse tipo de análise é para empresas que buscam otimizar a eficiência operacional e através de gestão.</b></p>
+                        
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/DashRenovaesperanca.jpg" alt="Power BI Visual 6" class="powerbi-image">
+                        <div class="powerbi-description">
+                        <h4>Dashboard de Ação Social</h4>
+                        <p><b>Projeto feito para identificar quais especialidades podemos atuar de acordo com a necessidade e procura e também ter uma visão ampla dos indicadores</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/RH.jpg" alt="Power BI Visual 6" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard de Recursos Humanos</h4>
+                        <p><b>👉Clique para visualizar</b></p>
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/Logistica.jpg" alt="Power BI Visual 2" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard de Logística</h4>
+                       
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/Financeiro.jpg" alt="Power BI Visual 3" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard Financeiro</h4>
+                      
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/vendas.jpg" alt="Power BI Visual 4" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard de E-commerce</h4>
+                        
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/SAC.jpg" alt="Power BI Visual 5" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Dashboard SAC</h4>
+                       
+                    </div>
+                </div>
+                <div class="powerbi-item">
+                    <img src="imgs/Frota.jpg" alt="Power BI Visual 4" class="powerbi-image">
+                    <div class="powerbi-description">
+                        <h4>Controle de Frota</h4>
+                        <p><b>Dashboard em Excel</b></p>
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="member-item">
-              <div class="member-avatar">DC</div>
-              <div class="member-info"><div class="member-name">Dra. Carla Lima</div><div class="member-sub">CRM 23456 · Clínica Geral</div></div>
-              <span class="badge-ativo">ativo</span>
+        </section>
+        
+        <section id="etl-transformation">
+            <h2>ETL & Data Transformation</h2>
+            
+            <div class="etl-intro">
+                <p><b>ETL (Extract, Transform, Load) é o coração de qualquer projeto de Business Intelligence. Transformo dados brutos em informações analíticas aplicando regras de negócio, normalização e otimização para Power BI. Explore os casos abaixo.</b></p>
             </div>
-            <div class="member-item">
-              <div class="member-avatar">DM</div>
-              <div class="member-info"><div class="member-name">Dr. Marcos Vieira</div><div class="member-sub">CRM 34567 · Ortopedia</div></div>
-              <span class="badge-ativo">ativo</span>
+
+            <div class="carousel-container-etl">
+                <button class="prev-etl" onclick="moveCarouselETL(-1)">❮</button>
+                <div class="carousel-etl">
+                    <!-- Caso 1: Normalização e Limpeza de Dados -->
+                    <div class="etl-case-item">
+                        <div class="etl-header">
+                            <h3>01. Normalização e Limpeza</h3>
+                            <span class="etl-layer">RAW → STAGING</span>
+                        </div>
+                        
+                        <div class="etl-context">
+                            <h4>📋 Contexto</h4>
+                            <p>Dados de clientes de múltiplas fontes com inconsistências: nomes com caracteres especiais, telefones em formatos diferentes, emails duplicados.</p>
+                        </div>
+
+                        <div class="etl-objective">
+                            <h4>🎯 Objetivo</h4>
+                            <p>Padronizar, limpar e deduplica os dados para garantir integridade na camada de staging.</p>
+                        </div>
+
+                        <div class="etl-query">
+                            <h4>💻 Query SQL</h4>
+                            <pre><code>WITH raw_clientes AS (
+    SELECT ID_CLIENTE, NOME_CLIENTE, EMAIL,
+        ROW_NUMBER() OVER (PARTITION BY EMAIL 
+        ORDER BY DATA_CADASTRO) AS rn
+    FROM RAW.CLIENTES
+)
+SELECT 
+    ID_CLIENTE,
+    UPPER(TRIM(REGEXP_REPLACE(
+        NOME_CLIENTE, '[^a-zA-Z\s]', ''))) 
+        AS NOME_CLIENTE,
+    LOWER(TRIM(EMAIL)) AS EMAIL_LIMPO
+INTO STAGING.CLIENTES_LIMPOS
+FROM raw_clientes
+WHERE rn = 1;</code></pre>
+                        </div>
+
+                        <div class="etl-explanation">
+                            <h4>Estrutura</h4>
+                            <ul>
+                                <li>Deduplica por email com ROW_NUMBER()</li>
+                                <li>Remove caracteres especiais de nomes</li>
+                                <li>Padroniza email em lowercase</li>
+                                <li>Auditoria com timestamp</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Caso 2: Aplicação de Regras de Negócio -->
+                    <div class="etl-case-item">
+                        <div class="etl-header">
+                            <h3>02. Regras de Negócio</h3>
+                            <span class="etl-layer">STAGING → MODEL</span>
+                        </div>
+                        
+                        <div class="etl-context">
+                            <h4>📋 Contexto</h4>
+                            <p>Dados de vendas brutos. Necessário segmentar clientes, calcular comissões progressivas e identificar inadimplência.</p>
+                        </div>
+
+                        <div class="etl-objective">
+                            <h4>🎯 Objetivo</h4>
+                            <p>Aplicar lógica de negócio: segmentação RFM, cálculos derivados e flags de risco.</p>
+                        </div>
+
+                        <div class="etl-query">
+                            <h4>💻 Query SQL</h4>
+                            <pre><code>WITH vendas_agregadas AS (
+    SELECT c.ID_CLIENTE, c.NOME_CLIENTE,
+        COUNT(*) AS QTD_VENDAS,
+        SUM(v.VALOR_VENDA) AS TOTAL_VENDAS
+    FROM STAGING.CLIENTES c
+    LEFT JOIN STAGING.VENDAS v 
+        ON c.ID_CLIENTE = v.ID_CLIENTE
+    GROUP BY c.ID_CLIENTE, c.NOME_CLIENTE
+)
+SELECT 
+    ID_CLIENTE,
+    CASE WHEN TOTAL_VENDAS >= 50000 
+        THEN 'VIP'
+        WHEN TOTAL_VENDAS >= 20000 
+        THEN 'PREMIUM'
+        ELSE 'PADRÃO' END AS SEGMENTO,
+    TOTAL_VENDAS * 
+        CASE WHEN TOTAL_VENDAS >= 50000 
+        THEN 0.08 ELSE 0.04 END 
+        AS COMISSAO
+INTO MODEL.CLIENTES_ANALISE
+FROM vendas_agregadas;</code></pre>
+                        </div>
+
+                        <div class="etl-explanation">
+                            <h4>✨ Destaques</h4>
+                            <ul>
+                                <li>Segmentação RFM (VIP, PREMIUM, PADRÃO)</li>
+                                <li>Comissão progressiva por faixa</li>
+                                <li>Cálculos pré-computados no ETL</li>
+                                <li>Agregações multidimensionais</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Caso 3: Preparação para Consumo Analítico -->
+                    <div class="etl-case-item">
+                        <div class="etl-header">
+                            <h3>03. Star Schema para BI</h3>
+                            <span class="etl-layer">MODEL → SEMANTIC</span>
+                        </div>
+                        
+                        <div class="etl-context">
+                            <h4>📋 Contexto</h4>
+                            <p>Dashboards no Power BI exigem dados modelados em estrutura dimensional com hierarquias e cálculos otimizados.</p>
+                        </div>
+
+                        <div class="etl-objective">
+                            <h4>🎯 Objetivo</h4>
+                            <p>Modelar em Star Schema, criar métricas pré-computadas e preparar semântica para DAX.</p>
+                        </div>
+
+                        <div class="etl-query">
+                            <h4>💻 Query SQL</h4>
+                            <pre><code>SELECT 
+    v.ID_VENDA,
+    c.ID_CLIENTE,
+    p.ID_PRODUTO,
+    CAST(v.DATA_VENDA AS INT) AS ID_DATA,
+    v.QUANTIDADE,
+    v.PRECO_UNITARIO,
+    v.VALOR_VENDA,
+    ROUND(v.VALOR_VENDA * 
+        (1 - COALESCE(v.DESCONTO, 0)/100), 2) 
+        AS VALOR_LIQUIDO,
+    ROUND((v.VALOR_VENDA - 
+        p.CUSTO_UNITARIO * v.QUANTIDADE) / 
+        NULLIF(v.VALOR_VENDA, 0) * 100, 2) 
+        AS MARGEM_PERC
+INTO SEMANTIC.FATO_VENDAS
+FROM MODEL.CLIENTES c
+INNER JOIN STAGING.VENDAS v 
+    ON c.ID_CLIENTE = v.ID_CLIENTE
+LEFT JOIN STAGING.PRODUTOS p 
+    ON v.ID_PRODUTO = p.ID_PRODUTO;</code></pre>
+                        </div>
+
+                        <div class="etl-explanation">
+                            <h4>✨ Destaques</h4>
+                            <ul>
+                                <li>Estrutura Star Schema</li>
+                                <li>Chaves numéricas para performance</li>
+                                <li>Cálculos de margem pré-computados</li>
+                                <li>Suporta agregações em Power BI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-etl" onclick="moveCarouselETL(1)">❯</button>
             </div>
-          </div>
+
+            <div class="etl-powerbi-integration">
+                <h3>🎯 Integração com Power BI</h3>
+                <p><b>Dados preparados em SEMANTIC são importados diretamente no Power BI:</b></p>
+                <ul>
+                    <li><b>Direct Query / Import:</b> Conexão nativa com tabelas de fatos e dimensões</li>
+                    <li><b>Medidas DAX:</b> Cálculos adicionais sobre métricas pré-computadas</li>
+                    <li><b>Performance:</b> Filtros no ETL reduzem volume em memória</li>
+                    <li><b>Confiabilidade:</b> Lógica centralizada garante consistência entre dashboards</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="ai-automation">
+            <h2>Automações com IA</h2>
+            <div class="ai-automation-container">
+                <div class="ai-project">
+                    <h3>Automação com N8N e IA</h3>
+                    <div class="video-container">
+                        <iframe width="100%" height="400" src="https://www.youtube.com/embed/POCZ_OUczwo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="ai-description">
+                        <p><b>Demonstração de automação inteligente utilizando N8N integrado com modelos de IA avançados. Este projeto mostra como criar fluxos de trabalho automatizados que potencializam a produtividade e reduzem processos manuais.</b></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section id="cta">
+        <div class="cta-container">
+            <h2>Pronto para Transformar seus Dados em Insights?</h2>
+            <p>Entre em contato comigo para discutir como posso ajudar seu negócio com BI e automações inteligentes.</p>
+            <div class="cta-buttons">
+                <a href="mailto:databusinessqi@gmail.com" class="cta-btn primary"><i class="fas fa-envelope"></i> Enviar Email</a>
+                <a href="https://www.linkedin.com/in/filipi-lozano/" target="_blank" class="cta-btn secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://wa.me/5575999319650" target="_blank" class="cta-btn whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+            </div>
         </div>
-
-        <!-- Tab Despesas -->
-        <div class="demo-tab-content" id="clinica-despesas">
-          <div class="mini-chart">
-            <h4>Despesas por Categoria — Fev/2025</h4>
-            <div class="bar-chart-row"><span class="bar-label">Assistentes</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#ef4444"></div></div><span class="bar-val">R$9,8k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Fixa</span><div class="bar-track"><div class="bar-fill" style="width:63%;background:#f4a825"></div></div><span class="bar-val">R$6,2k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Impostos</span><div class="bar-track"><div class="bar-fill" style="width:48%;background:#7c3aed"></div></div><span class="bar-val">R$4,7k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Variável</span><div class="bar-track"><div class="bar-fill" style="width:33%;background:#1a6fbf"></div></div><span class="bar-val">R$3,2k</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Insumos</span><div class="bar-track"><div class="bar-fill" style="width:21%;background:#059669"></div></div><span class="bar-val">R$2,1k</span></div>
-          </div>
-          <div style="background:#0d1b2a;border:1px solid #1e3248;border-radius:10px;padding:12px;">
-            <p style="font-size:0.75rem;color:#f4a825;font-weight:700;margin-bottom:6px;">✅ Conciliação Automática</p>
-            <p style="font-size:0.75rem;color:#8899aa;margin:0;">Contas a pagar/receber integradas com DRE e fluxo de caixa. Alertas automáticos de vencimentos.</p>
-          </div>
+    </section>
+    
+    <footer>
+        <div class="social-links">
+            <a href="mailto:databusinessqi@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/filipi-lozano/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/filipidosdados" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
-      </div>
+        <p>© 2026 Filipi C. Lozano. Todos os direitos reservados.</p>
+    </footer>
 
-      <!-- Info panel -->
-      <div class="demo-info">
-        <div class="info-card-hero blue">
-          <div class="info-card-hero-icon">🏥</div>
-          <h4>Sistema de Gestão para Clínicas</h4>
-          <p>Financeiro · Produtividade · Multi-unidade</p>
-        </div>
-        <div class="info-block">
-          <div class="info-block-title">Sobre este sistema</div>
-          <p>Dashboard financeiro completo com controle de atendimentos, contas a pagar/receber, DRE, conciliação bancária e gestão de múltiplas clínicas com controle de acesso por perfil.</p>
-        </div>
-        <div class="info-block">
-          <div class="info-block-title">Funcionalidades</div>
-          <div class="info-tags">
-            <span class="sistema-tag">Financeiro</span>
-            <span class="sistema-tag">Multi-clínica</span>
-            <span class="sistema-tag">DRE</span>
-            <span class="sistema-tag">Produtividade</span>
-            <span class="sistema-tag">Conciliação</span>
-            <span class="sistema-tag">Multi-perfil</span>
-          </div>
-        </div>
-        <a class="btn-orcamento" href="https://wa.me/5561999999999" target="_blank">💬 Quero um sistema assim</a>
-      </div>
-    </div>
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i> Voltar ao Topo
+    </a>
 
-    <div class="demo-outros">
-      <p>Ver outros projetos:</p>
-      <div class="demo-outros-btns">
-        <button class="btn-outro-sistema" onclick="abrirDemo('pastoral')">⛪ Visitas Pastorais</button>
-        <button class="btn-outro-sistema" onclick="abrirDemo('carteirinha')">🪪 Hub Carteirinhas</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ DEMO: PASTORAL ============ -->
-  <div class="demo-panel" id="demo-pastoral">
-    <div class="demo-panel-header">
-      <div class="demo-panel-header-left">
-        <span class="demo-panel-icon">⛪</span>
-        <div>
-          <h3>Sistema de Visitas Pastorais</h3>
-          <p>Igreja Batista Central — Dados fictícios</p>
-        </div>
-      </div>
-      <div class="demo-panel-badges">
-        <span class="badge-ficticio">📊 Dados fictícios</span>
-        <button class="btn-voltar" onclick="voltarCards()">← Voltar</button>
-      </div>
-    </div>
-
-    <div class="demo-panel-body">
-      <div class="demo-content">
-        <div class="demo-tabs">
-          <button class="demo-tab active" onclick="trocarTab('pastoral','visaogeral',this)">Visão Geral</button>
-          <button class="demo-tab" onclick="trocarTab('pastoral','agenda',this)">Agenda</button>
-          <button class="demo-tab" onclick="trocarTab('pastoral','setores',this)">Setores</button>
-        </div>
-
-        <!-- Tab Visão Geral -->
-        <div class="demo-tab-content active" id="pastoral-visaogeral">
-          <div class="kpi-grid">
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">👥</span></div>
-              <div class="kpi-value">347</div>
-              <div class="kpi-label">Membros Ativos</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">📍</span></div>
-              <div class="kpi-value">67</div>
-              <div class="kpi-label">Visitas em Fev</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">✅</span></div>
-              <div class="kpi-value">95,7%</div>
-              <div class="kpi-label">Taxa Realização</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">⏳</span></div>
-              <div class="kpi-value">12</div>
-              <div class="kpi-label">Pendentes</div>
-            </div>
-          </div>
-          <div class="mini-chart">
-            <h4>Visitas Realizadas por Mês</h4>
-            <div class="bar-chart-row"><span class="bar-label">Set/24</span><div class="bar-track"><div class="bar-fill" style="width:63%;background:#7c3aed"></div></div><span class="bar-val">42</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Out/24</span><div class="bar-track"><div class="bar-fill" style="width:82%;background:#7c3aed"></div></div><span class="bar-val">55</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Nov/24</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:#7c3aed"></div></div><span class="bar-val">48</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Dez/24</span><div class="bar-track"><div class="bar-fill" style="width:91%;background:#7c3aed"></div></div><span class="bar-val">61</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Jan/25</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#7c3aed"></div></div><span class="bar-val">58</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Fev/25</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#f4a825"></div></div><span class="bar-val">67 🏆</span></div>
-          </div>
-        </div>
-
-        <!-- Tab Agenda -->
-        <div class="demo-tab-content" id="pastoral-agenda">
-          <p style="font-size:0.78rem;font-weight:600;color:#e0e0e0;margin-bottom:10px;">📅 Próximas Visitas — Março/2025</p>
-          <div class="member-list">
-            <div class="member-item">
-              <div class="member-avatar">JS</div>
-              <div class="member-info"><div class="member-name">João Silva</div><div class="member-sub">📍 Asa Norte - Q. 312 · 09/03</div></div>
-              <span class="badge-pendente">pendente</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">MO</div>
-              <div class="member-info"><div class="member-name">Maria Oliveira</div><div class="member-sub">📍 Asa Sul - Q. 506 · 09/03</div></div>
-              <span class="badge-pendente">pendente</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">PS</div>
-              <div class="member-info"><div class="member-name">Pedro Santos</div><div class="member-sub">📍 Taguatinga - C. 12 · 10/03</div></div>
-              <span class="badge-confirmada">confirmada</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">AC</div>
-              <div class="member-info"><div class="member-name">Ana Costa</div><div class="member-sub">📍 Sobradinho - B. 4 · 11/03</div></div>
-              <span class="badge-confirmada">confirmada</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">CM</div>
-              <div class="member-info"><div class="member-name">Carlos Mendes</div><div class="member-sub">📍 Asa Norte - Q. 214 · 12/03</div></div>
-              <span class="badge-pendente">pendente</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Setores -->
-        <div class="demo-tab-content" id="pastoral-setores">
-          <div class="mini-chart">
-            <h4>Distribuição por Setor — Fev/2025</h4>
-            <div class="bar-chart-row"><span class="bar-label">Asa Norte</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#7c3aed"></div></div><span class="bar-val">24 vis.</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Asa Sul</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:#1a6fbf"></div></div><span class="bar-val">19 vis.</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Taguatinga</span><div class="bar-track"><div class="bar-fill" style="width:63%;background:#059669"></div></div><span class="bar-val">15 vis.</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Sobradinho</span><div class="bar-track"><div class="bar-fill" style="width:38%;background:#f4a825"></div></div><span class="bar-val">9 vis.</span></div>
-          </div>
-          <div style="background:#0d1b2a;border:1px solid #1e3248;border-radius:10px;padding:12px;">
-            <p style="font-size:0.75rem;color:#f4a825;font-weight:700;margin-bottom:6px;">🗺️ Gestão Geográfica</p>
-            <p style="font-size:0.75rem;color:#8899aa;margin:0;">Cada setor tem um responsável pastoral designado. O sistema monitora cobertura, frequência e histórico de visitas por região.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info panel -->
-      <div class="demo-info">
-        <div class="info-card-hero violet">
-          <div class="info-card-hero-icon">⛪</div>
-          <h4>Sistema de Visitas Pastorais</h4>
-          <p>Gestão · Agenda · Relatórios</p>
-        </div>
-        <div class="info-block">
-          <div class="info-block-title">Sobre este sistema</div>
-          <p>Plataforma para igrejas organizarem e monitorarem visitas pastorais por setor, com agenda, histórico de membros, taxa de realização e controle de pendências.</p>
-        </div>
-        <div class="info-block">
-          <div class="info-block-title">Funcionalidades</div>
-          <div class="info-tags">
-            <span class="sistema-tag">Agenda</span>
-            <span class="sistema-tag">Setores</span>
-            <span class="sistema-tag">Membros</span>
-            <span class="sistema-tag">Relatórios</span>
-            <span class="sistema-tag">Histórico</span>
-            <span class="sistema-tag">Responsáveis</span>
-          </div>
-        </div>
-        <a class="btn-orcamento" href="https://wa.me/5561999999999" target="_blank">💬 Quero um sistema assim</a>
-      </div>
-    </div>
-
-    <div class="demo-outros">
-      <p>Ver outros projetos:</p>
-      <div class="demo-outros-btns">
-        <button class="btn-outro-sistema" onclick="abrirDemo('clinica')">🏥 Gestão Clínica</button>
-        <button class="btn-outro-sistema" onclick="abrirDemo('carteirinha')">🪪 Hub Carteirinhas</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ DEMO: CARTEIRINHA ============ -->
-  <div class="demo-panel" id="demo-carteirinha">
-    <div class="demo-panel-header">
-      <div class="demo-panel-header-left">
-        <span class="demo-panel-icon">🪪</span>
-        <div>
-          <h3>Hub de Carteirinhas Digitais</h3>
-          <p>Academia FitLife — Dados fictícios</p>
-        </div>
-      </div>
-      <div class="demo-panel-badges">
-        <span class="badge-ficticio">📊 Dados fictícios</span>
-        <button class="btn-voltar" onclick="voltarCards()">← Voltar</button>
-      </div>
-    </div>
-
-    <div class="demo-panel-body">
-      <div class="demo-content">
-        <div class="demo-tabs">
-          <button class="demo-tab active" onclick="trocarTab('carteirinha','membros',this)">Membros</button>
-          <button class="demo-tab" onclick="trocarTab('carteirinha','emissoes',this)">Emissões</button>
-          <button class="demo-tab" onclick="trocarTab('carteirinha','acessos',this)">Acessos</button>
-        </div>
-
-        <!-- Tab Membros -->
-        <div class="demo-tab-content active" id="carteirinha-membros">
-          <div class="kpi-grid">
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">👥</span><span class="kpi-trend-up">▲ +12%</span></div>
-              <div class="kpi-value">312</div>
-              <div class="kpi-label">Membros Ativos</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">🪪</span><span class="kpi-trend-up">▲ +18%</span></div>
-              <div class="kpi-value">47</div>
-              <div class="kpi-label">Emitidas em Fev</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">🔒</span></div>
-              <div class="kpi-value">28</div>
-              <div class="kpi-label">Acessos Hoje</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-card-top"><span class="kpi-icon">📈</span><span class="kpi-trend-up">▲ +18%</span></div>
-              <div class="kpi-value">+18%</div>
-              <div class="kpi-label">Crescimento</div>
-            </div>
-          </div>
-          <div class="member-list">
-            <div class="member-item">
-              <div class="member-avatar">LF</div>
-              <div class="member-info"><div class="member-name">Lucas Ferreira</div><div class="member-sub">#00234 · Premium</div></div>
-              <span class="badge-ativo">ativo</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">BL</div>
-              <div class="member-info"><div class="member-name">Beatriz Lima</div><div class="member-sub">#00235 · Básico</div></div>
-              <span class="badge-ativo">ativo</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">RS</div>
-              <div class="member-info"><div class="member-name">Ricardo Sousa</div><div class="member-sub">#00236 · Premium</div></div>
-              <span class="badge-vencido">vencido</span>
-            </div>
-            <div class="member-item">
-              <div class="member-avatar">AM</div>
-              <div class="member-info"><div class="member-name">André Martins</div><div class="member-sub">#00238 · VIP</div></div>
-              <span class="badge-ativo">ativo</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Emissões -->
-        <div class="demo-tab-content" id="carteirinha-emissoes">
-          <div class="mini-chart">
-            <h4>Carteirinhas Emitidas por Mês</h4>
-            <div class="bar-chart-row"><span class="bar-label">Set/24</span><div class="bar-track"><div class="bar-fill" style="width:60%;background:#059669"></div></div><span class="bar-val">28</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Out/24</span><div class="bar-track"><div class="bar-fill" style="width:74%;background:#059669"></div></div><span class="bar-val">35</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Nov/24</span><div class="bar-track"><div class="bar-fill" style="width:66%;background:#059669"></div></div><span class="bar-val">31</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Dez/24</span><div class="bar-track"><div class="bar-fill" style="width:47%;background:#059669"></div></div><span class="bar-val">22</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Jan/25</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#059669"></div></div><span class="bar-val">40</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Fev/25</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#f4a825"></div></div><span class="bar-val">47 🏆</span></div>
-          </div>
-          <!-- Carteirinha visual -->
-          <div style="background:linear-gradient(135deg,#059669,#047857);border-radius:12px;padding:16px;color:white;">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
-              <div>
-                <p style="font-size:0.7rem;opacity:0.8;margin:0 0 2px;">Academia FitLife</p>
-                <p style="font-size:1rem;font-weight:700;margin:0;">Lucas Ferreira</p>
-              </div>
-              <span style="font-size:1.6rem;opacity:0.6;">🪪</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-size:0.75rem;">
-              <div><p style="opacity:0.7;margin:0 0 2px;">Matrícula</p><p style="font-weight:700;margin:0;font-family:monospace;">#00234</p></div>
-              <div><p style="opacity:0.7;margin:0 0 2px;">Plano</p><p style="font-weight:700;margin:0;">Premium</p></div>
-              <div><p style="opacity:0.7;margin:0 0 2px;">Válido até</p><p style="font-weight:700;margin:0;">12/2025</p></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Acessos -->
-        <div class="demo-tab-content" id="carteirinha-acessos">
-          <div class="mini-chart">
-            <h4>Acessos por Dia da Semana</h4>
-            <div class="bar-chart-row"><span class="bar-label">Segunda</span><div class="bar-track"><div class="bar-fill" style="width:58%;background:#059669"></div></div><span class="bar-val">18</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Terça</span><div class="bar-track"><div class="bar-fill" style="width:77%;background:#059669"></div></div><span class="bar-val">24</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Quarta</span><div class="bar-track"><div class="bar-fill" style="width:68%;background:#059669"></div></div><span class="bar-val">21</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Quinta</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#f4a825"></div></div><span class="bar-val">31 🏆</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Sexta</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:#059669"></div></div><span class="bar-val">28</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Sábado</span><div class="bar-track"><div class="bar-fill" style="width:48%;background:#059669"></div></div><span class="bar-val">15</span></div>
-            <div class="bar-chart-row"><span class="bar-label">Domingo</span><div class="bar-track"><div class="bar-fill" style="width:29%;background:#1e3248"></div></div><span class="bar-val">9</span></div>
-          </div>
-          <div style="background:#0d1b2a;border:1px solid #1e3248;border-radius:10px;padding:12px;">
-            <p style="font-size:0.75rem;color:#f4a825;font-weight:700;margin-bottom:6px;">📲 Controle QR Code</p>
-            <p style="font-size:0.75rem;color:#8899aa;margin:0;">Cada carteirinha possui QR Code único. Registro automático de entrada/saída com data, hora e histórico completo de acessos.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info panel -->
-      <div class="demo-info">
-        <div class="info-card-hero green">
-          <div class="info-card-hero-icon">🪪</div>
-          <h4>Hub de Carteirinhas Digitais</h4>
-          <p>QR Code · Controle de Acesso · Membros</p>
-        </div>
-        <div class="info-block">
-          <div class="info-block-title">Sobre este sistema</div>
-          <p>Sistema de emissão e gestão de carteirinhas digitais com QR Code para controle de acesso, gestão de planos, registro de entrada/saída e relatórios de uso.</p>
-        </div>
-        <div class="info-block">
-          <div class="info-block-title">Funcionalidades</div>
-          <div class="info-tags">
-            <span class="sistema-tag">QR Code</span>
-            <span class="sistema-tag">Controle Acesso</span>
-            <span class="sistema-tag">Planos</span>
-            <span class="sistema-tag">Relatórios</span>
-            <span class="sistema-tag">Digital</span>
-            <span class="sistema-tag">Histórico</span>
-          </div>
-        </div>
-        <a class="btn-orcamento" href="https://wa.me/5561999999999" target="_blank">💬 Quero um sistema assim</a>
-      </div>
-    </div>
-
-    <div class="demo-outros">
-      <p>Ver outros projetos:</p>
-      <div class="demo-outros-btns">
-        <button class="btn-outro-sistema" onclick="abrirDemo('clinica')">🏥 Gestão Clínica</button>
-        <button class="btn-outro-sistema" onclick="abrirDemo('pastoral')">⛪ Visitas Pastorais</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== CTA ========== -->
-  <div class="sistemas-cta">
-    <h3>Tem um projeto em mente?</h3>
-    <p>Desenvolvo sistemas personalizados para o seu negócio com dados reais, autenticação de usuários, relatórios automáticos e entrega ágil.</p>
-    <a class="btn-orcamento" href="https://wa.me/5561999999999" target="_blank" style="display:inline-flex;width:auto;padding:12px 28px;">💬 Falar no WhatsApp</a>
-  </div>
-</section>
-
-<!-- ========= JS - Cole antes do </body> no seu index.html ========= -->
-<script>
-  function abrirDemo(id) {
-    document.getElementById('sistemas-cards').style.display = 'none';
-    document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
-    const panel = document.getElementById('demo-' + id);
-    if (panel) {
-      panel.classList.add('active');
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  function voltarCards() {
-    document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('sistemas-cards').style.display = 'grid';
-    document.getElementById('sistemas-gerenciamento').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function trocarTab(sistema, tab, btn) {
-    // Remove active de todas as tabs e conteúdos do sistema
-    const panel = document.getElementById('demo-' + sistema);
-    panel.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
-    panel.querySelectorAll('.demo-tab-content').forEach(c => c.classList.remove('active'));
-    // Ativa a tab e conteúdo selecionados
-    btn.classList.add('active');
-    const content = document.getElementById(sistema + '-' + tab);
-    if (content) content.classList.add('active');
-  }
-</script>
-</html>
+    <script src="carrossel.js"></script>
+    
+    <script>
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            console.log('Filtro: ' + category);
+        }
+        
+        const backToTopButton = document.querySelector('.back-to-top');
+    
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    
+</i></a></footer></body></html>
